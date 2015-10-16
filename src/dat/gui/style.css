@@ -37,7 +37,7 @@
       .dg.main.taller-than-window .close-button {
         opacity: 1;
         /* TODO, these are style notes */
-        margin-top: -1px;
+        margin-top: -20px;
         border-top: 1px solid #2c2c2c; }
     .dg.main ul.closed .close-button {
       opacity: 1 !important; }
