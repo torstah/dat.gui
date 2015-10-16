@@ -14,7 +14,6 @@
 define([
   'dat/utils/common'
 ], function(common) {
-  console.log('bajs')
   var EVENT_MAP = {
     'HTMLEvents': ['change'],
     'MouseEvents': ['click','mousemove','mousedown','mouseup', 'mouseover'],
