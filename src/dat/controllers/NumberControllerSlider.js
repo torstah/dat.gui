@@ -16,9 +16,10 @@ define([
     'dat/dom/dom',
     'dat/utils/css',
     'dat/utils/common',
+    'dat/utils/pointer',
     'text!dat/controllers/NumberControllerSlider.css'
 ], 
-function(NumberController, dom, css, common, styleSheet) {
+function(NumberController, dom, css, common, pointer, styleSheet) {
 
   /**
    * @class Represents a given property of an object that is a number, contains
@@ -40,6 +41,8 @@ function(NumberController, dom, css, common, styleSheet) {
    */
   var NumberControllerSlider = function(object, property, min, max, step) {
 
+  
+
     NumberControllerSlider.superclass.call(this, object, property, { min: min, max: max, step: step });
 
     var _this = this;
@@ -49,28 +52,35 @@ function(NumberController, dom, css, common, styleSheet) {
     
 
 
-    dom.bind(this.__background, 'mousedown', onMouseDown);
+    dom.bind(this.__background, pointer.start, onMouseDown);
+    //dom.bind(this.__background, 'touchstart', onMouseDown);
     
     dom.addClass(this.__background, 'slider');
     dom.addClass(this.__foreground, 'slider-fg');
 
     function onMouseDown(e) {
 
-      dom.bind(window, 'mousemove', onMouseDrag);
-      dom.bind(window, 'mouseup', onMouseUp);
+      console.log('onMouseDown',e)
+
+      dom.bind(window, pointer.move, onMouseDrag);
+      dom.bind(window, pointer.end, onMouseUp);
+
 
       onMouseDrag(e);
     }
 
     function onMouseDrag(e) {
-
       e.preventDefault();
 
       var offset = dom.getOffset(_this.__background);
       var width = dom.getWidth(_this.__background);
+
+      var clientX = pointer.isTouch ? e.touches[0].clientX : e.clientX;
       
       _this.setValue(
-      	map(e.clientX, offset.left, offset.left + width, _this.__min, _this.__max)
+
+      	//map(e.clientX, offset.left, offset.left + width, _this.__min, _this.__max)
+        map(clientX, offset.left, offset.left + width, _this.__min, _this.__max)
       );
 
       return false;
@@ -78,8 +88,8 @@ function(NumberController, dom, css, common, styleSheet) {
     }
 
     function onMouseUp() {
-      dom.unbind(window, 'mousemove', onMouseDrag);
-      dom.unbind(window, 'mouseup', onMouseUp);
+      dom.unbind(window, pointer.move, onMouseDrag);
+      dom.unbind(window, pointer.end, onMouseUp);
       if (_this.__onFinishChange) {
         _this.__onFinishChange.call(_this, _this.getValue());
       }

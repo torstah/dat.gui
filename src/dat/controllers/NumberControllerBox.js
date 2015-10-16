@@ -14,8 +14,9 @@
 define([
   'dat/controllers/NumberController',
   'dat/dom/dom',
-  'dat/utils/common'
-], function(NumberController, dom, common) {
+  'dat/utils/common',
+  'dat/utils/pointer'
+], function(NumberController, dom, common, pointer) {
 
   /**
    * @class Represents a given property of an object that is a number and
@@ -54,7 +55,7 @@ define([
 
     dom.bind(this.__input, 'change', onChange);
     dom.bind(this.__input, 'blur', onBlur);
-    dom.bind(this.__input, 'mousedown', onMouseDown);
+    dom.bind(this.__input, pointer.start, onMouseDown);
     dom.bind(this.__input, 'keydown', function(e) {
 
       // When pressing entire, you can be as precise as you want.
@@ -79,23 +80,28 @@ define([
     }
 
     function onMouseDown(e) {
-      dom.bind(window, 'mousemove', onMouseDrag);
-      dom.bind(window, 'mouseup', onMouseUp);
-      prev_y = e.clientY;
+      dom.bind(window, pointer.move, onMouseDrag);
+      dom.bind(window, pointer.end, onMouseUp);
+      var clientY = pointer.isTouch ? e.touches[0].clientY : e.clientY;
+      prev_y = clientY;
     }
 
     function onMouseDrag(e) {
 
-      var diff = prev_y - e.clientY;
+      var clientY = pointer.isTouch ? e.touches[0].clientY : e.clientY;
+
+      var diff = prev_y - clientY;
       _this.setValue(_this.getValue() + diff * _this.__impliedStep);
 
-      prev_y = e.clientY;
+      console.log(diff)
+
+      prev_y = clientY;
 
     }
 
     function onMouseUp() {
-      dom.unbind(window, 'mousemove', onMouseDrag);
-      dom.unbind(window, 'mouseup', onMouseUp);
+      dom.unbind(window, pointer.move, onMouseDrag);
+      dom.unbind(window, pointer.end, onMouseUp);
     }
 
     this.updateDisplay();

@@ -310,7 +310,7 @@ dat.controllers.Controller = (function (common) {
 
 
 dat.dom.dom = (function (common) {
-
+  console.log('bajs')
   var EVENT_MAP = {
     'HTMLEvents': ['change'],
     'MouseEvents': ['click','mousemove','mousedown','mouseup', 'mouseover'],
@@ -956,14 +956,18 @@ dat.controllers.NumberControllerSlider = (function (NumberController, dom, css, 
 
 
     dom.bind(this.__background, 'mousedown', onMouseDown);
+    dom.bind(this.__background, 'touchstart', onMouseDown);
     
     dom.addClass(this.__background, 'slider');
     dom.addClass(this.__foreground, 'slider-fg');
 
     function onMouseDown(e) {
 
+      console.log('onMouseDown',e)
+
       dom.bind(window, 'mousemove', onMouseDrag);
       dom.bind(window, 'mouseup', onMouseUp);
+
 
       onMouseDrag(e);
     }
