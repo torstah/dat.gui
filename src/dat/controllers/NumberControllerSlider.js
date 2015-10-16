@@ -60,8 +60,6 @@ function(NumberController, dom, css, common, pointer, styleSheet) {
 
     function onMouseDown(e) {
 
-      console.log('onMouseDown',e)
-
       dom.bind(window, pointer.move, onMouseDrag);
       dom.bind(window, pointer.end, onMouseUp);
 

@@ -1,5 +1,5 @@
-;(function () {
-	'use strict';
+define([
+], function() {
 
 	/**
 	 * @preserve FastClick: polyfill to remove click delays on browsers with touch UIs.
@@ -12,7 +12,10 @@
 	/*jslint browser:true, node:true*/
 	/*global define, Event, Node*/
 
+	var navigator = {};
 
+
+	navigator.userAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 7_0 like Mac OS X; en-us) AppleWebKit/537.51.1 (KHTML, like Gecko) Version/7.0 Mobile/11A465 Safari/9537.53";
 	/**
 	 * Instantiate fast-clicking listeners on the specified layer.
 	 *
@@ -22,6 +25,8 @@
 	 */
 	function FastClick(layer, options) {
 		var oldOnClick;
+
+
 
 		options = options || {};
 
@@ -125,7 +130,7 @@
 			layer.addEventListener('mouseup', this.onMouse, true);
 		}
 
-		layer.addEventListener('click', this.onClick, true);
+		//layer.addEventListener('click', this.onClick, true);
 		layer.addEventListener('touchstart', this.onTouchStart, false);
 		layer.addEventListener('touchmove', this.onTouchMove, false);
 		layer.addEventListener('touchend', this.onTouchEnd, false);
@@ -788,10 +793,7 @@
 			}
 		}
 
-		// IE10 with -ms-touch-action: none or manipulation, which disables double-tap-to-zoom (issue #97)
-		if (layer.style.msTouchAction === 'none' || layer.style.touchAction === 'manipulation') {
-			return true;
-		}
+		
 
 		// Firefox version - zero for other browsers
 		firefoxVersion = +(/Firefox\/([0-9]+)/.exec(navigator.userAgent) || [,0])[1];
@@ -805,11 +807,11 @@
 			}
 		}
 
-		// IE11: prefixed -ms-touch-action is no longer supported and it's recomended to use non-prefixed version
-		// http://msdn.microsoft.com/en-us/library/windows/apps/Hh767313.aspx
-		if (layer.style.touchAction === 'none' || layer.style.touchAction === 'manipulation') {
-			return true;
-		}
+		// // IE11: prefixed -ms-touch-action is no longer supported and it's recomended to use non-prefixed version
+		// // http://msdn.microsoft.com/en-us/library/windows/apps/Hh767313.aspx
+		// if (layer.style.touchAction === 'none' || layer.style.touchAction === 'manipulation') {
+		// 	return true;
+		// }
 
 		return false;
 	};
@@ -838,4 +840,4 @@
 	} else {
 		window.FastClick = FastClick;
 	}
-}());
+});
