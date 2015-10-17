@@ -33,17 +33,17 @@ define([
   'dat/dom/dom',
 
   'dat/utils/common',
-  'dat/utils/fastclick'
+  // 'dat/utils/fastclick'
 
-], function(css, saveDialogueContents, styleSheet, controllerFactory, Controller, BooleanController, FunctionController, NumberControllerBox, NumberControllerSlider, OptionController, ColorController, requestAnimationFrame, CenteredDiv, dom, common, FastClick) {
+], function(css, saveDialogueContents, styleSheet, controllerFactory, Controller, BooleanController, FunctionController, NumberControllerBox, NumberControllerSlider, OptionController, ColorController, requestAnimationFrame, CenteredDiv, dom, common) {
 
   css.inject(styleSheet);
 
-  if ('addEventListener' in document) {
-      document.addEventListener('DOMContentLoaded', function() {
-          FastClick.attach(document.body);
-      }, false);
-  }
+  // if ('addEventListener' in document) {
+  //     document.addEventListener('DOMContentLoaded', function() {
+  //         FastClick.attach(document.body);
+  //     }, false);
+  // }
 
   /** Outer-most className for GUI's */
   var CSS_NAMESPACE = 'dg';
