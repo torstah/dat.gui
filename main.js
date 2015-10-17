@@ -20,17 +20,8 @@ require([
   gui.add(obj,'x')
   gui.add(obj,'x',1,100).name('longPropName')
   gui.add(obj,'yes')
-  gui.add(obj,'x')
-  gui.add(obj,'x',1,100).name('longPropName')
-  gui.add(obj,'yes')
   gui.add(obj,'doit')
-  gui.add(obj,'x')
-  gui.add(obj,'x',1,100).name('longPropName')
-  gui.add(obj,'yes')
-  gui.add(obj,'x')
-  gui.add(obj,'x',1,100).name('longPropName')
-  gui.add(obj,'yes')
-  gui.add(obj,'doit')
+ 
 
   // var gui2 = new GUI();
   // gui2.add(obj,'x')

@@ -93,8 +93,6 @@ define([
       var diff = prev_y - clientY;
       _this.setValue(_this.getValue() + diff * _this.__impliedStep);
 
-      console.log(diff)
-
       prev_y = clientY;
 
     }

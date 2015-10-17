@@ -33,17 +33,14 @@ define([
   'dat/dom/dom',
 
   'dat/utils/common',
-  // 'dat/utils/fastclick'
+  'dat/utils/fastclick_org'
 
-], function(css, saveDialogueContents, styleSheet, controllerFactory, Controller, BooleanController, FunctionController, NumberControllerBox, NumberControllerSlider, OptionController, ColorController, requestAnimationFrame, CenteredDiv, dom, common) {
+], function(css, saveDialogueContents, styleSheet, controllerFactory, Controller, BooleanController, FunctionController, NumberControllerBox, NumberControllerSlider, OptionController, ColorController, requestAnimationFrame, CenteredDiv, dom, common, FastClick) {
 
   css.inject(styleSheet);
 
-  // if ('addEventListener' in document) {
-  //     document.addEventListener('DOMContentLoaded', function() {
-  //         FastClick.attach(document.body);
-  //     }, false);
-  // }
+
+
 
   /** Outer-most className for GUI's */
   var CSS_NAMESPACE = 'dg';
@@ -93,6 +90,12 @@ define([
    * @param {Boolean} [params.closed] If true, starts closed
    */
   var GUI = function(params) {
+
+      if ('addEventListener' in document) {
+      document.addEventListener('DOMContentLoaded', function() {
+          FastClick.attach(document.body);
+      }, false);
+  }
 
     var _this = this;
 
