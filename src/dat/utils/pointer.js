@@ -9,26 +9,34 @@ define([
    
   var isTouch = is_touch_device();
 
+  console.log('isTouch',isTouch)
+
+  window.isTouch = isTouch;
+
   var pointerStart,
       pointerEnd,
-      pointerMove
+      pointerMove,
+      pointerClick;
 
   if (isTouch) {
     pointerStart = 'touchstart';
     pointerEnd  = 'touchend';
     pointerMove = 'touchmove';
+    pointerClick = 'touchstart';
   } else {
     pointerStart = 'mousedown';
     pointerEnd  = 'mouseup';
     pointerMove = 'mousemove';
-  }
+    pointerClick = 'click';
+  } 
 
 
   return { 
     start: pointerStart,
     end: pointerEnd,
     move: pointerMove,
-    isTouch: isTouch
+    isTouch: isTouch,
+    click: pointerClick,
 
   };
     

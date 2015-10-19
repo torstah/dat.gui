@@ -332,4 +332,8 @@
     height: 40px !important;
   }
 
+  .dg .c select {
+    margin-top: 18px;
+  }
+
 }

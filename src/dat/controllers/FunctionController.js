@@ -14,8 +14,9 @@
 define([
     'dat/controllers/Controller',
     'dat/dom/dom',
-    'dat/utils/common'
-], function(Controller, dom, common) {
+    'dat/utils/common',
+    'dat/utils/pointer',
+], function(Controller, dom, common,pointer) {
 
   /**
    * @class Provides a GUI interface to fire a specified method, a property of an object.
@@ -35,7 +36,7 @@ define([
 
     this.__button = document.createElement('div');
     this.__button.innerHTML = text === undefined ? 'Fire' : text;
-    dom.bind(this.__button, 'click', function(e) {
+    dom.bind(this.__button, pointer.click, function(e) {
       e.preventDefault();
       _this.fire();
       return false;

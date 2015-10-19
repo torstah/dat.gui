@@ -17,7 +17,7 @@ define([
 
   var EVENT_MAP = {
     'HTMLEvents': ['change'],
-    'MouseEvents': ['click','mousemove','mousedown','mouseup', 'mouseover'],
+    'MouseEvents': ['click','mousemove','mousedown','mouseup', 'mouseover','touchstart','touchend'],
     'KeyboardEvents': ['keydown']
   };
 
@@ -103,14 +103,17 @@ define([
      * @param params
      */
     fakeEvent: function(elem, eventType, params, aux) {
+      
       params = params || {};
       var className = EVENT_MAP_INV[eventType];
+
       if (!className) {
         throw new Error('Event type ' + eventType + ' not supported.');
       }
       var evt = document.createEvent(className);
       switch (className) {
         case 'MouseEvents':
+          //console.log('fakeEvent',className,evt,eventType.replace('touchstart','click'))
           var clientX = params.x || params.clientX || 0;
           var clientY = params.y || params.clientY || 0;
           evt.initMouseEvent(eventType, params.bubbles || false,

@@ -824,20 +824,12 @@ define([
 	 * @param {Object} [options={}] The options to override the defaults
 	 */
 	FastClick.attach = function(layer, options) {
-		return new FastClick(layer, options);
+		var f = new FastClick(layer, options);
+		window.f = f;
+		return f
 	};
 
 
-	if (typeof define === 'function' && typeof define.amd === 'object' && define.amd) {
-
-		// AMD. Register as an anonymous module.
-		define(function() {
-			return FastClick;
-		});
-	} else if (typeof module !== 'undefined' && module.exports) {
-		module.exports = FastClick.attach;
-		module.exports.FastClick = FastClick;
-	} else {
-		window.FastClick = FastClick;
-	}
+	
+	return FastClick;
 });

@@ -33,13 +33,11 @@ define([
   'dat/dom/dom',
 
   'dat/utils/common',
-  'dat/utils/fastclick_org'
-
-], function(css, saveDialogueContents, styleSheet, controllerFactory, Controller, BooleanController, FunctionController, NumberControllerBox, NumberControllerSlider, OptionController, ColorController, requestAnimationFrame, CenteredDiv, dom, common, FastClick) {
+  'dat/utils/fastclick_org',
+  'dat/utils/pointer',
+], function(css, saveDialogueContents, styleSheet, controllerFactory, Controller, BooleanController, FunctionController, NumberControllerBox, NumberControllerSlider, OptionController, ColorController, requestAnimationFrame, CenteredDiv, dom, common, FastClick, pointer) {
 
   css.inject(styleSheet);
-
-
 
 
   /** Outer-most className for GUI's */
@@ -91,10 +89,12 @@ define([
    */
   var GUI = function(params) {
 
-      if ('addEventListener' in document) {
-      document.addEventListener('DOMContentLoaded', function() {
-          FastClick.attach(document.body);
-      }, false);
+  if ('addEventListener' in document) {
+    setTimeout(function  (argument) {
+       FastClick.attach(document.body);
+      console.log('attching ',document.body)
+    },1000)
+   
   }
 
     var _this = this;
@@ -372,7 +372,7 @@ define([
       dom.addClass(this.__closeButton, GUI.CLASS_CLOSE_BUTTON);
       this.domElement.appendChild(this.__closeButton);
 
-      dom.bind(this.__closeButton, 'click', function() {
+      dom.bind(this.__closeButton, pointer.click, function() {
 
         _this.closed = !_this.closed;
 
@@ -401,7 +401,7 @@ define([
       dom.addClass(this.__ul, GUI.CLASS_CLOSED);
 
       dom.addClass(title_row, 'title');
-      dom.bind(title_row, 'click', on_click_title);
+      dom.bind(title_row, pointer.click, on_click_title);
 
       if (!params.closed) {
         this.closed = false;
@@ -981,19 +981,19 @@ define([
     }
     else if (controller instanceof BooleanController) {
 
-      dom.bind(li, 'click', function() {
-        dom.fakeEvent(controller.__checkbox, 'click');
+      dom.bind(li, pointer.click, function() {
+        dom.fakeEvent(controller.__checkbox, pointer.click);
       });
 
-      dom.bind(controller.__checkbox, 'click', function(e) {
+      dom.bind(controller.__checkbox, pointer.click, function(e) {
         e.stopPropagation(); // Prevents double-toggle
       })
 
     }
     else if (controller instanceof FunctionController) {
 
-      dom.bind(li, 'click', function() {
-        dom.fakeEvent(controller.__button, 'click');
+      dom.bind(li, pointer.click, function() {
+        dom.fakeEvent(controller.__button, pointer.click);
       });
 
       dom.bind(li, 'mouseover', function() {
@@ -1200,23 +1200,23 @@ define([
       }
     });
 
-    dom.bind(gears, 'click', function() {
+    dom.bind(gears, pointer.click, function() {
       newConstructorTextArea.innerHTML = JSON.stringify(gui.getSaveObject(), undefined, 2);
       SAVE_DIALOGUE.show();
       newConstructorTextArea.focus();
       newConstructorTextArea.select();
     });
 
-    dom.bind(button, 'click', function() {
+    dom.bind(button, pointer.click, function() {
       gui.save();
     });
 
-    dom.bind(button2, 'click', function() {
+    dom.bind(button2, pointer.click, function() {
       var presetName = prompt('Enter a new preset name.');
       if (presetName) gui.saveAs(presetName);
     });
 
-    dom.bind(button3, 'click', function() {
+    dom.bind(button3, pointer.click, function() {
       gui.revert();
     });
 
