@@ -92,7 +92,7 @@ define([
   if ('addEventListener' in document) {
     setTimeout(function  (argument) {
        FastClick.attach(document.body);
-      console.log('attching ',document.body)
+        console.log("Attaching FastClick")
     },1000)
    
   }

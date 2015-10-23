@@ -9,7 +9,7 @@ define([
    
   var isTouch = is_touch_device();
 
-  console.log('isTouch',isTouch)
+  //console.log('isTouch',isTouch)
 
   window.isTouch = isTouch;
 
@@ -36,8 +36,7 @@ define([
     end: pointerEnd,
     move: pointerMove,
     isTouch: isTouch,
-    click: pointerClick,
-
+    click: pointerClick
   };
     
 });

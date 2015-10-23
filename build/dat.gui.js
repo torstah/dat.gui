@@ -817,7 +817,7 @@ dat.utils.pointer = (function () {
    
   var isTouch = is_touch_device();
 
-  console.log('isTouch',isTouch)
+  //console.log('isTouch',isTouch)
 
   window.isTouch = isTouch;
 
@@ -844,8 +844,7 @@ dat.utils.pointer = (function () {
     end: pointerEnd,
     move: pointerMove,
     isTouch: isTouch,
-    click: pointerClick,
-
+    click: pointerClick
   };
     
 })();
@@ -1646,7 +1645,7 @@ dat.GUI = dat.gui.GUI = (function (css, saveDialogueContents, styleSheet, contro
   if ('addEventListener' in document) {
     setTimeout(function  (argument) {
        FastClick.attach(document.body);
-      console.log('attching ',document.body)
+        console.log("Attaching FastClick")
     },1000)
    
   }
