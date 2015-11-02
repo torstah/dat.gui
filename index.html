@@ -4,16 +4,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
 </head>
 <body>
+	<style>
+	body, html {
+		margin: 0;
+		font-family: sans-serif;
+	}
+
+	.container {
+		display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+		background: yellow;
+		position: absolute;
+	}
+
+	.content {
+		text-transform: uppercase;
+		text-align: center;
+	}
+
+	</style>
+
+	<div class="container">
+		<div class="content">
+			<h3>Try making your browser window smaller</h3>
+		</div>
+	</div>
   
   <script data-main="main" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.20/require.js"></script>
- 
-  <script type="text/javascript">
- //    var obj = { x: 5, yes:false };
- //    var gui = new dat.GUI();
-	// gui.add(obj, 'x');	
- //  gui.add(obj, 'x',0,100);  
- //  gui.add(obj, 'x',[0,100]); 
- //  gui.add(obj, 'yes'); 
-  </script>
+
 </body>
 </html>
