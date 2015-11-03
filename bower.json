@@ -1,7 +1,7 @@
 {
-  "name": "dat-gui",
-  "version": "0.5.0",
-  "homepage": "https://github.com/dataarts/dat.gui",
+  "name": "dat-gui-mobile",
+  "version": "0.6.0",
+  "homepage": "https://github.com/torstah/dat.gui",
   "authors": [
     "Google Data Arts Team <dataarts@google.com>"
   ],
