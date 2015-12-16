@@ -30,7 +30,6 @@ define([
 
 
         if (common.isBoolean(arguments[2])) {
-          console.log('BAJSA',common.isBoolean(arguments[2]))
           return new StringLogController(object, property);
         }
 

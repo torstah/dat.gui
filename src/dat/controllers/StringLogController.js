@@ -28,7 +28,7 @@ define([
    * @member dat.controllers
    */
   var StringLogController = function(object, property) {
-    console.log("StringLogController");
+
     StringLogController.superclass.call(this, object, property);
 
     var _this = this;
