@@ -79,7 +79,7 @@
     transition: height 0.1s ease-out; }
   .dg li:not(.folder) {
     cursor: auto;
-    height: 27px;
+    /*height: 27px;*/
     line-height: 27px;
     overflow: hidden;
     padding: 0 4px 0 5px; }
@@ -119,6 +119,12 @@
     width: 30%;
     /*display: none;*/
     margin-left: 0; }
+  .dg .has-log  {
+      height: 130px;
+  }
+  .dg .has-log textarea  {
+      width: 100%;
+  }
   .dg .slider {
     float: left;
     width: 66%;
@@ -281,6 +287,9 @@
 
 
 @media (max-width: 600px) {
+  .has-log {
+    height: 150px ;
+  }
   .dg li:not(.folder) {
     height: 60px;
   }

@@ -106,7 +106,7 @@ function build(_params) {
       }
     }
   }
-  
+
 
   to_write += params.shortcut + ' = ' + params.main.replace(/\//g, '.') + ' = ' + defined[params.main].getClosure() + ';';
 
@@ -119,7 +119,7 @@ function build(_params) {
 
     closure.compile(to_write, function(error, code) {
       if (error) {
-        console.log(error);
+        console.log("FELKod",error,code);
       } else {
         write(exports.license + code);
       }

@@ -27,13 +27,19 @@ define([
    *
    * @member dat.controllers
    */
-  var StringController = function(object, property) {
-
-    StringController.superclass.call(this, object, property);
+  var StringLogController = function(object, property) {
+    console.log("StringLogController");
+    StringLogController.superclass.call(this, object, property);
 
     var _this = this;
 
-    this.__input = document.createElement('input');
+    this._lastVal;
+    this._lastUpdateTime = 0;
+
+
+
+    this.__input = document.createElement('textarea');
+    this.__input.style.height = '115px';
     this.__input.setAttribute('type', 'text');
 
     dom.bind(this.__input, 'keyup', onChange);
@@ -62,11 +68,11 @@ define([
 
   };
 
-  StringController.superclass = Controller;
+  StringLogController.superclass = Controller;
 
   common.extend(
 
-      StringController.prototype,
+      StringLogController.prototype,
       Controller.prototype,
 
       {
@@ -74,16 +80,29 @@ define([
         updateDisplay: function() {
           // Stops the caret from moving on account of:
           // keyup -> setValue -> updateDisplay
+
           if (!dom.isActive(this.__input)) {
-            this.__input.value = this.getValue();
+            var now = Date.now();
+            if (now - this._lastUpdateTime > 100) {
+              this.__input.scrollTop = this.__input.scrollHeight;
+              if (this.getValue() != this._lastVal) {
+                this.__input.value += this.getValue() + '\n';
+              } else {
+                //this.__input.value += this.getValue() + '!!';
+              }
+
+              this._lastVal = this.getValue();
+              this._lastUpdateTime = now;
+            }
+
           }
-          return StringController.superclass.prototype.updateDisplay.call(this);
+          return StringLogController.superclass.prototype.updateDisplay.call(this);
         }
 
       }
 
   );
 
-  return StringController;
+  return StringLogController;
 
 });

@@ -1,16 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1">
 </head>
 <body>
   <script type="text/javascript" src="build/dat.gui.js"></script>
   <script type="text/javascript">
-    var obj = { x: 5, yes:false };
+    var obj = { x: 5, yes:false, name: "bajs" };
     var gui = new dat.GUI();
-  	gui.add(obj, 'x');	
-    gui.add(obj, 'x',0,100);  
-    gui.add(obj, 'x',[0,100]); 
-    gui.add(obj, 'yes'); 
+  	gui.add(obj, 'x');
+    gui.add(obj, 'x',0,100);
+    gui.add(obj, 'x',[0,100]);
+    gui.add(obj, 'yes');
+    gui.add(obj, 'name',true).listen();
+
+    count = 0;
+
+    setInterval(function function_name(argument) {
+      obj.name = count;
+      count++;
+
+    },200)
+
   </script>
 </body>
 </html>

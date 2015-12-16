@@ -24,7 +24,7 @@ define([
    * @member dat.controllers
    */
   var Controller = function(object, property) {
-
+    console.log("init",arguments)
     this.initialValue = object[property];
 
     /**

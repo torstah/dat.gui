@@ -21,6 +21,8 @@ define([
   'dat/controllers/factory',
   'dat/controllers/Controller',
   'dat/controllers/BooleanController',
+  'dat/controllers/StringController',
+  'dat/controllers/StringLogController',
   'dat/controllers/FunctionController',
   'dat/controllers/NumberControllerBox',
   'dat/controllers/NumberControllerSlider',
@@ -35,7 +37,7 @@ define([
   'dat/utils/common',
   'dat/utils/fastclick_org',
   'dat/utils/pointer',
-], function(css, saveDialogueContents, styleSheet, controllerFactory, Controller, BooleanController, FunctionController, NumberControllerBox, NumberControllerSlider, OptionController, ColorController, requestAnimationFrame, CenteredDiv, dom, common, FastClick, pointer) {
+], function(css, saveDialogueContents, styleSheet, controllerFactory, Controller, BooleanController, StringController, StringLogController, FunctionController, NumberControllerBox, NumberControllerSlider, OptionController, ColorController, requestAnimationFrame, CenteredDiv, dom, common, FastClick, pointer) {
 
   css.inject(styleSheet);
 
@@ -94,7 +96,7 @@ define([
        FastClick.attach(document.body);
         console.log("Attaching FastClick")
     },1000)
-   
+
   }
 
     var _this = this;
@@ -924,12 +926,27 @@ define([
         return controller;
       },
 
+      log: function() {
+        controller
+        console.log('LOGGGG',controller)
+        return controller;
+      },
+
       remove: function() {
         controller.__gui.remove(controller);
         return controller;
       }
 
     });
+    if (controller instanceof StringLogController) {
+      dom.addClass(li, 'has-log');
+      // controller.updateDisplay = common.compose(function(r) {
+      //   console.log('lkasjdf')
+      //   return r;
+      // }, controller.updateDisplay);
+      //
+      // controller.updateDisplay();
+    }
 
     // All sliders should be accompanied by a box.
     if (controller instanceof NumberControllerSlider) {
@@ -938,6 +955,7 @@ define([
           { min: controller.__min, max: controller.__max, step: controller.__step });
 
       common.each(['updateDisplay', 'onChange', 'onFinishChange'], function(method) {
+
         var pc = controller[method];
         var pb = box[method];
         controller[method] = box[method] = function() {

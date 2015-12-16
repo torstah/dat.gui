@@ -15,16 +15,24 @@ define([
   'dat/controllers/OptionController',
   'dat/controllers/NumberControllerBox',
   'dat/controllers/NumberControllerSlider',
+  'dat/controllers/StringLogController',
   'dat/controllers/StringController',
   'dat/controllers/FunctionController',
   'dat/controllers/BooleanController',
   'dat/utils/common'
 ],
-    function(OptionController, NumberControllerBox, NumberControllerSlider, StringController, FunctionController, BooleanController, common) {
+    function(OptionController, NumberControllerBox, NumberControllerSlider, StringLogController, StringController, FunctionController, BooleanController, common) {
 
       return function(object, property) {
 
         var initialValue = object[property];
+
+
+
+        if (common.isBoolean(arguments[2])) {
+          console.log('BAJSA',common.isBoolean(arguments[2]))
+          return new StringLogController(object, property);
+        }
 
         // Providing options?
         if (common.isArray(arguments[2]) || common.isObject(arguments[2])) {
@@ -47,6 +55,8 @@ define([
           }
 
         }
+
+
 
         if (common.isString(initialValue)) {
           return new StringController(object, property);
