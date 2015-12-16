@@ -189,7 +189,7 @@ dat.controllers.Controller = (function (common) {
    * @member dat.controllers
    */
   var Controller = function(object, property) {
-    console.log("init",arguments)
+
     this.initialValue = object[property];
 
     /**
@@ -1110,7 +1110,7 @@ dat.controllers.StringLogController = (function (Controller, dom, common) {
    * @member dat.controllers
    */
   var StringLogController = function(object, property) {
-    console.log("StringLogController");
+
     StringLogController.superclass.call(this, object, property);
 
     var _this = this;
@@ -3119,7 +3119,6 @@ dat.controllers.factory = (function (OptionController, NumberControllerBox, Numb
 
 
         if (common.isBoolean(arguments[2])) {
-          console.log('BAJSA',common.isBoolean(arguments[2]))
           return new StringLogController(object, property);
         }
 
